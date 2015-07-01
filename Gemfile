@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 # Use bootstrap to easily improve look and feel
 gem 'bootstrap-sass'
+
+gem 'font-awesome-sass'
 # Use stripe for ecommerce payments
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 # Figaro gem for securely managing credentials

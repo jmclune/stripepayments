@@ -15,18 +15,33 @@
         </ul>
     </article>
     <aside id="details-aside" class="col-sm-4">
-        <a id="btn-buy" href="receipt.html" class="btn btn-success btn-lg btn-block"><span class="glyphicon glyphicon-ok"></span>I want this!</a>
-        <%= form_tag charges_path do %>
-          <article>
-            <label class="amount">
-              <span>Amount: $5.00</span>
-            </label>
-          </article>
+       <!--  <a id="btn-buy" href="receipt.html" class="btn btn-success btn-lg btn-block"><span class="fa fa-check"></span>I want this!</a> -->
+        <%= form_tag charges_path, id:'chargeForm' do %>
+          <script src="https://checkout.stripe.com/checkout.js"></script>
+          <%= hidden_field_tag 'stripeToken' %>
+          <%= hidden_field_tag 'stripeEmail' %>
+            <button id='btn-buy' type+'button' class="btn btn-success btn-lg btn-block">
+              <span class="fa fa-check"></span>I want this!
+            </button>
+          <script>
+          var handler = StripeCheckout.configure({
+            key: "<%= Rails.configuration.stripe[:publishable_key] %>",
+            token: function(token, arg) {
+              document.getElementById("stripeToken").value = token.id;
+              document.getElementById("stripeEmail").value = token.email;
+              document.getElementById("chargeForm").submit();
+            }
+          });
 
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                  data-description="A month's subscription"
-                  data-amount="500"></script>
+          document.getElementById('btn-buy').addEventListener('click', function(e) {
+            handler.open({
+              name: 'One Month',
+              description: 'Growth Hacking Crash Course ($4.00)',
+              amount: 499
+            });
+            e.preventDefault();
+          })
+          </script>
         <% end %>
         <ul id="details-infobox" class="list-group">
           <li class="list-group-item active clearfix">DETAILS</li>
@@ -49,7 +64,7 @@ Made by <a href="http://onemonth.com" target="_blank">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title"><span class="glyphicon glyphicon-user"></span>About the Teacher</h4>
+        <h4 class="modal-title"><span class="fa fa-user"></span>About the Teacher</h4>
       </div>
       <div class="modal-body clearfix">
             <div id="modal-left" class="pull-left">
