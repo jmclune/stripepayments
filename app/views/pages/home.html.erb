@@ -11,7 +11,7 @@
           <script src="https://checkout.stripe.com/checkout.js"></script>
           <%= hidden_field_tag 'stripeToken' %>
           <%= hidden_field_tag 'stripeEmail' %>
-          <%= hidden_field_tag 'amount', @product.price %>
+          <%= hidden_field_tag 'amount', @product.price_in_cents %>
             <button id="btn-buy" type="button" class="btn btn-success btn-lg btn-block">
               <span class="fa fa-check"></span>I want this!
             </button>
@@ -45,6 +45,7 @@
         </ul>
     </aside>
 </section>
+</div>
 <footer id="site-footer">
 Made by <a href="http://onemonth.com" target="_blank">
 <%= image_tag('one-month-logo.svg', id: 'one-month-footer-logo', alt: 'One Month') %></a>

@@ -9,6 +9,7 @@
 growth_hacking = Product.create(title: "Growth Hacking", subtitle: "Crash Course",
   author: "Mattan Griffel", author_image_name: "teacher-image.jpg", price: "4.99",
   sku: "GROHACK1", length: "30", details: "You'll get one video",
+   downloadurl: "https://s3-us-west-2.amazonaws.com/jcstripepayments/CAFFEINE_CONTENT_-_Canada.pdf",
 
   description:%{
   <p>In this talk, Mattan Griffel introduces you to the concept of Growth Hacking
